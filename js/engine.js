@@ -8,9 +8,11 @@ class Engine {
     }
 
     drawGrid(grid) {
-        for (let i = 0; i < grid.cells.length; i++) {
-            let cell = grid.cells[i];
-            this.drawCell(cell);
+        for(let i = 0; i < grid.cells.length; i++){
+            for(let j = 0; j < grid.cells[i].length; j++){
+                let cell = grid.cells[i][j];
+                this.drawCell(cell);
+            }
         }
     }
 
