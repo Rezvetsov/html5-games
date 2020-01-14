@@ -27,4 +27,13 @@ class Cell {
         this.positionX = posX * (this.sizeX + this.indent);
         this.positionY = posY * (this.sizeY + this.indent);
     }
+    
+    static cellToGlobalPosition(posX, posY){
+        let position = {
+            x : posX * (24 + 1),
+            y : posY * (24 + 1)
+        }
+
+        return position;
+    }
 }
