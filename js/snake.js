@@ -31,34 +31,84 @@ class Snake {
         this.body.push(new SnakeNode(c.x, c.y));
     }
 
-    move(newDiriection){
-        console.log(newDiriection);
+    move(inputDirection){
         this.shrink();
         let prev = this.body[0];
 
-        if (newDiriection == directions.up){
-            this.body.unshift(
-                new SnakeNode(
-                    prev.positionX,
-                    prev.positionY - 25)
-            );
+        // UP 
+        // Если полученное направление равно "вверх"
+        if (inputDirection == directions.up){
+            // и предыдущее не равно "вниз"
+            // то перемещаем вверх
+            if(this.direction != directions.down){
+                this._moveUp(prev);
+                this.direction = inputDirection;
+            }
+            // Иначе пусть продолжает движение "вниз"
+            else{
+                this._moveDown(prev);
+            }
+        } 
+        // DOWN
+        else if (inputDirection == directions.down) {
+
+            if (this.direction != directions.up) {
+                this._moveDown(prev);
+                this.direction = inputDirection;
+            } 
+            else {
+                this._moveUp(prev);
+            }
+        } 
+        // RIGHT
+        else if (inputDirection == directions.right){   
+            if(this.direction != directions.left){
+                this._moveRight(prev);
+                this.direction = inputDirection;
+            }
+            else{
+                this._moveLeft(prev);
+            }
         }
-        else if (newDiriection == directions.right){            
-            this.body.unshift(
-                new SnakeNode(
-                    prev.positionX + 25, 
-                    prev.positionY));
-        } else if (newDiriection == directions.down){
-            this.body.unshift(
-                new SnakeNode(
-                    prev.positionX,
-                    prev.positionY + 25));
-        } else if (newDiriection == directions.left) {
-            this.body.unshift(
-                new SnakeNode(
-                    prev.positionX - 25,
-                    prev.positionY));
+        // LEFT 
+        else if (inputDirection == directions.left) {
+            if (this.direction != directions.right) {
+                this._moveLeft(prev);
+                this.direction = inputDirection;
+            }
+            else {
+                this._moveRight(prev);
+            }
         }
+    }
+
+    _moveUp(prev){
+        this.body.unshift(
+            new SnakeNode(
+                prev.positionX,
+                prev.positionY - 25));
+    }
+
+    _moveDown(prev){
+        this.body.unshift(
+            new SnakeNode(
+                prev.positionX,
+                prev.positionY + 25));
+    }
+
+    _moveLeft(prev){
+        this.body.unshift(
+            new SnakeNode(
+                prev.positionX - 25,
+                prev.positionY));
+    }
+
+    _moveRight(prev){
+        this.body.unshift(
+            new SnakeNode(
+                prev.positionX + 25,
+                prev.positionY));
+
     }
 
     shrink(){
