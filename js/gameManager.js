@@ -2,10 +2,12 @@ class GameManager {
     engine = {};
     grid = {};
     apple = {};
+    snake = {};
     constructor(canvas) {
-        this.engine = new Engine(canvas);
         this.grid = new Grid();
+        this.engine = new Engine(canvas, this.grid);
         this.apple = new Apple();
+        this.snake = new Snake();
     }
 
     Start() {
@@ -13,6 +15,15 @@ class GameManager {
         this.engine.drawGrid(this.grid);
         this.apple.setCell(this.GetRandomCell());
         this.engine.drawApple(this.apple);
+        this.engine.drawSnake(this.snake);
+    }
+
+    NextFrame(){
+        this.engine.clear();
+        this.engine.drawGrid(this.grid);
+        this.engine.drawApple(this.apple);
+        this.engine.drawSnake(this.snake);
+
     }
 
     GetRandomCell() {
@@ -23,7 +34,21 @@ class GameManager {
     }
 
     GetInput(e) {
-        if (e.key == ' ')
-            this.Start();
+        console.log(e.key);
+        
+        if (e.key == 'w'){
+            this.snake.move(directions.up);          
+            this.NextFrame();
+        } else if (e.key == 'd') {
+            this.snake.move(directions.right);
+            this.NextFrame();
+        } else if (e.key == 's') {
+            this.snake.move(directions.down);
+            this.NextFrame();
+        } else if (e.key == 'a') {
+            this.snake.move(directions.left);
+            this.NextFrame();
+        }
     }
 }
+
