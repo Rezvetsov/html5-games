@@ -17,8 +17,9 @@ class GameManager {
 
     GetRandomCell() {
         let length = this.grid.cells.length;
-        let index = Math.floor(Math.random() * length);
-        return this.grid.cells[index];
+        let index1 = Math.floor(Math.random() * length);
+        let index2 = Math.floor(Math.random() * length);
+        return this.grid.cells[index1][index2];
     }
 
     GetInput(e) {
