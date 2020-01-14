@@ -1,13 +1,12 @@
 class Engine {
     static canvas;
     static ctx;
-
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext('2d');
     }
 
-    drawGrid(grid) {
+    drawGrid(grid) {        
         for(let i = 0; i < grid.cells.length; i++){
             for(let j = 0; j < grid.cells[i].length; j++){
                 let cell = grid.cells[i][j];
@@ -27,6 +26,17 @@ class Engine {
             apple.cell.positionY,
             apple.cell.sizeX,
             apple.cell.sizeY);
+    }
+
+    drawSnake(snake){
+        for (let i = 0; i < snake.body.length; i++){
+            let bodyPart = snake.body[i];
+            this.ctx.fillStyle = bodyPart.color;
+            this.ctx.fillRect(
+                bodyPart.positionX, 
+                bodyPart.positionY,
+                bodyPart.sizeX, bodyPart.sizeY);
+        }
     }
 
     clear() {
