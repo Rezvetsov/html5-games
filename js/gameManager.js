@@ -33,19 +33,25 @@ class GameManager {
         return this.grid.cells[index1][index2];
     }
 
-    GetInput(e) {
-        console.log(e.key);
-        
-        if (e.key == 'w'){
+    GetInput(e) {  
+        /* Movement */      
+        // Up
+        if (e.keyCode == '87' || e.keyCode == '38'){
             this.snake.move(directions.up);          
             this.NextFrame();
-        } else if (e.key == 'd') {
+        } 
+        // Right
+        else if (e.keyCode == '68' || e.keyCode == '39') {
             this.snake.move(directions.right);
             this.NextFrame();
-        } else if (e.key == 's') {
+        } 
+        // Down
+        else if (e.keyCode == '83' || e.keyCode == '40') {
             this.snake.move(directions.down);
             this.NextFrame();
-        } else if (e.key == 'a') {
+        } 
+        // Left
+        else if (e.keyCode == '65' || e.keyCode == '37') {
             this.snake.move(directions.left);
             this.NextFrame();
         }
