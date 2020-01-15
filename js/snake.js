@@ -9,48 +9,64 @@ class Snake {
     direction = directions.right;
     body = new Array();
     constructor() {
-        this.body.push(new Cell("#0277BD", 10, 10));
-        this.body.push(new Cell("#0277BD", 9, 10));
-        this.body.push(new Cell("#0277BD", 9,9));
-        this.body.push(new Cell("#0277BD", 9,8));
+        this.body.push(new Cell(cellColors.snake, 10, 10));
+        this.body.push(new Cell(cellColors.snake, 9, 10));
+        this.body.push(new Cell(cellColors.snake, 9,9));
+        this.body.push(new Cell(cellColors.snake, 9,8));
     }
 
-    move(inputDirection){
+    /* Перемещение */
+    // Передвижение змейки происходит следующим образом:
+    // Удаляем хвост змейки (метод shrink)
+    // Затем создаем на месте головы змейки новый блок,
+    // который направлен в зависимости от полученного
+    // от пользователя направления (метод stretch)
+    move(inputDirection) {
         this.shrink();
+        this.stretch(inputDirection);
+    }
+    
+    // Отрезать хвост для перемещения
+    shrink() {
+        this.body.pop();
+    }
+    
+    // Добавить голову
+    stretch(inputDirection){
         let prev = this.body[0];
 
         // UP 
         // Если полученное направление равно "вверх"
-        if (inputDirection == directions.up){
+        if (inputDirection == directions.up) {
             // и предыдущее не равно "вниз"
             // то перемещаем вверх
-            if(this.direction != directions.down){
+            if (this.direction != directions.down) {
                 this._moveUp(prev);
                 this.direction = inputDirection;
             }
             // Иначе пусть продолжает движение "вниз"
-            else{
+            else {
                 this._moveDown(prev);
             }
-        } 
+        }
         // DOWN
         else if (inputDirection == directions.down) {
 
             if (this.direction != directions.up) {
                 this._moveDown(prev);
                 this.direction = inputDirection;
-            } 
+            }
             else {
                 this._moveUp(prev);
             }
-        } 
+        }
         // RIGHT
-        else if (inputDirection == directions.right){   
-            if(this.direction != directions.left){
+        else if (inputDirection == directions.right) {
+            if (this.direction != directions.left) {
                 this._moveRight(prev);
                 this.direction = inputDirection;
             }
-            else{
+            else {
                 this._moveLeft(prev);
             }
         }
@@ -69,7 +85,7 @@ class Snake {
     _moveUp(prev){
         this.body.unshift(
             new Cell(
-                "#0277BD",
+                cellColors.snake,
                 prev.cellPositionX,
                 prev.cellPositionY - 1));
     }
@@ -77,7 +93,7 @@ class Snake {
     _moveDown(prev){
         this.body.unshift(
             new Cell(
-                "#0277BD",
+                cellColors.snake,
                 prev.cellPositionX,
                 prev.cellPositionY + 1));
     }
@@ -85,7 +101,7 @@ class Snake {
     _moveLeft(prev){
         this.body.unshift(
             new Cell(
-                "#0277BD",
+                cellColors.snake,
                 prev.cellPositionX - 1,
                 prev.cellPositionY));
     }
@@ -93,13 +109,9 @@ class Snake {
     _moveRight(prev){
         this.body.unshift(
             new Cell(
-                "#0277BD",
+                cellColors.snake,
                 prev.cellPositionX + 1,
                 prev.cellPositionY));
 
-    }
-
-    shrink(){
-        this.body.pop();
     }
 }
