@@ -1,15 +1,3 @@
-class SnakeNode {
-    color = "#0277BD";
-        positionX;
-        positionY;
-        sizeX = 24;
-        sizeY = 24;
-    constructor(posX, posY){
-        this.positionX = posX;
-        this.positionY = posY;
-    }
-}
-
 const directions = {
     up: 1,
     right: 2,
@@ -21,14 +9,10 @@ class Snake {
     direction = directions.right;
     body = new Array();
     constructor() {
-        let c = Cell.cellToGlobalPosition(10, 10);
-        this.body.push(new SnakeNode(c.x, c.y));
-        c = Cell.cellToGlobalPosition(9, 10);
-        this.body.push(new SnakeNode(c.x, c.y));
-        c = Cell.cellToGlobalPosition(9, 9);
-        this.body.push(new SnakeNode(c.x, c.y));
-        c = Cell.cellToGlobalPosition(9, 8);
-        this.body.push(new SnakeNode(c.x, c.y));
+        this.body.push(new Cell("#0277BD", 10, 10));
+        this.body.push(new Cell("#0277BD", 9, 10));
+        this.body.push(new Cell("#0277BD", 9,9));
+        this.body.push(new Cell("#0277BD", 9,8));
     }
 
     move(inputDirection){
@@ -84,30 +68,34 @@ class Snake {
 
     _moveUp(prev){
         this.body.unshift(
-            new SnakeNode(
-                prev.positionX,
-                prev.positionY - 25));
+            new Cell(
+                "#0277BD",
+                prev.cellPositionX,
+                prev.cellPositionY - 1));
     }
 
     _moveDown(prev){
         this.body.unshift(
-            new SnakeNode(
-                prev.positionX,
-                prev.positionY + 25));
+            new Cell(
+                "#0277BD",
+                prev.cellPositionX,
+                prev.cellPositionY + 1));
     }
 
     _moveLeft(prev){
         this.body.unshift(
-            new SnakeNode(
-                prev.positionX - 25,
-                prev.positionY));
+            new Cell(
+                "#0277BD",
+                prev.cellPositionX - 1,
+                prev.cellPositionY));
     }
 
     _moveRight(prev){
         this.body.unshift(
-            new SnakeNode(
-                prev.positionX + 25,
-                prev.positionY));
+            new Cell(
+                "#0277BD",
+                prev.cellPositionX + 1,
+                prev.cellPositionY));
 
     }
 
