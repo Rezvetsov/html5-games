@@ -9,12 +9,13 @@ class Snake {
     direction = directions.right;
     body = new Array();
     appleEaten = 0;
+    dead = false;
     constructor() {
         this.body.push(new snakeCell(10, 10));
         this.body.push(new snakeCell(9, 10));
-        this.body.push(new snakeCell(9,9));
-        this.body.push(new snakeCell(9,8));
-        obstacles.snake = this.snake;
+        this.body.push(new snakeCell(9, 9));
+        this.body.push(new snakeCell(9, 8));
+        obstacles.snake = this;
     }
 
     /* Перемещение */
@@ -26,6 +27,30 @@ class Snake {
     move(inputDirection) {
         this.shrink();
         this.crawl(inputDirection);
+        this.detectCollisions();
+    }
+
+    detectCollisions(){
+        let head = this.body[0];
+        
+        // Проверяем, съела ли змейка яблоко
+        // Если да, то увеличиваем счетчик яблок
+        if (head.cellPositionX == obstacles.apple.cell.cellPositionX && head.cellPositionY == obstacles.apple.cell.cellPositionY)
+        {
+            this.appleEaten++;
+            obstacles.apple.eaten = true;
+        } 
+        // Проверяем, врезалась ли змейка сама в себя
+        // если где-то да, то змейка умирает ;(
+        // Счетчик начинается с 4, 
+        // ибо элемент 0 не может пересечься с элементами 1-3
+        else{
+            for(let i = 4; i < obstacles.snake.body.length; i++){                
+                if (head.cellPositionX == obstacles.snake.body[i].cellPositionX && head.cellPositionY == obstacles.snake.body[i].cellPositionY){
+                    this.dead = true;
+                }
+            }
+        }
     }
     
     // Отрезать хвост для перемещения
