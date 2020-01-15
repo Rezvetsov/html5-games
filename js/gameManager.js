@@ -6,31 +6,30 @@ class GameManager {
     constructor(canvas) {
         this.grid = new Grid();
         this.engine = new Engine(canvas, this.grid);
-        this.apple = new Apple();
+        
         this.snake = new Snake();
     }
 
     Start() {
         this.engine.clear();
         this.engine.drawGrid(this.grid);
-        this.apple.setCell(this.GetRandomCell());
-        this.engine.drawApple(this.apple);
+        this.apple = new Apple(this.GetRandomCellPosition());
         this.engine.drawSnake(this.snake);
+        this.engine.drawApple(this.apple);
     }
 
     NextFrame(){
         this.engine.clear();
         this.engine.drawGrid(this.grid);
-        this.engine.drawApple(this.apple);
         this.engine.drawSnake(this.snake);
-
+        this.engine.drawApple(this.apple);
     }
 
-    GetRandomCell() {
+    GetRandomCellPosition() {
         let length = this.grid.cells.length;
-        let index1 = Math.floor(Math.random() * length);
-        let index2 = Math.floor(Math.random() * length);
-        return this.grid.cells[index1][index2];
+        let x = Math.floor(Math.random() * length);
+        let y = Math.floor(Math.random() * length);
+        return {x, y};
     }
 
     GetInput(e) {  
