@@ -6,23 +6,30 @@ class GameManager {
     constructor(canvas) {
         this.grid = new Grid();
         this.engine = new Engine(canvas, this.grid);
-        
-        this.snake = new Snake();
-    }
+            }
 
     Start() {
         this.engine.clear();
-        this.engine.drawGrid(this.grid);
+        this.snake = new Snake();
         this.apple = new Apple(this.GetRandomCellPosition());
+        this.engine.drawGrid(this.grid);
         this.engine.drawSnake(this.snake);
-        this.engine.drawApple(this.apple);
+        this.engine.drawApple(this.apple);        
     }
 
     NextFrame(){
         this.engine.clear();
         this.engine.drawGrid(this.grid);
         this.engine.drawSnake(this.snake);
+
+        if(this.apple.eaten == true){
+            this.apple = new Apple(this.GetRandomCellPosition());
+        }
         this.engine.drawApple(this.apple);
+
+        if(this.snake.dead == true){
+            this.Start();
+        }      
     }
 
     GetRandomCellPosition() {
