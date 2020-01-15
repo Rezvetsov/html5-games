@@ -39,6 +39,7 @@ class Snake {
         {
             this.appleEaten++;
             obstacles.apple.eaten = true;
+            this.stretch();
         } 
         // Проверяем, врезалась ли змейка сама в себя
         // если где-то да, то змейка умирает ;(
@@ -56,6 +57,13 @@ class Snake {
     // Отрезать хвост для перемещения
     shrink() {
         this.body.pop();
+    }
+
+    stretch(){
+        let tail = this.body[this.body.length - 1];
+        this.body.push(new snakeCell(
+            tail.cellPositionX,
+            tail.cellPositionY));
     }
     
     // Добавить голову
