@@ -9,10 +9,11 @@ class Snake {
     direction = directions.right;
     body = new Array();
     constructor() {
-        this.body.push(new Cell(cellColors.snake, 10, 10));
-        this.body.push(new Cell(cellColors.snake, 9, 10));
-        this.body.push(new Cell(cellColors.snake, 9,9));
-        this.body.push(new Cell(cellColors.snake, 9,8));
+        this.body.push(new snakeCell(10, 10));
+        this.body.push(new snakeCell(9, 10));
+        this.body.push(new snakeCell(9,9));
+        this.body.push(new snakeCell(9,8));
+        
     }
 
     /* Перемещение */
@@ -84,32 +85,28 @@ class Snake {
 
     _moveUp(prev){
         this.body.unshift(
-            new Cell(
-                cellColors.snake,
+            new snakeCell(
                 prev.cellPositionX,
                 prev.cellPositionY - 1));
     }
 
     _moveDown(prev){
         this.body.unshift(
-            new Cell(
-                cellColors.snake,
+            new snakeCell(
                 prev.cellPositionX,
                 prev.cellPositionY + 1));
     }
 
     _moveLeft(prev){
         this.body.unshift(
-            new Cell(
-                cellColors.snake,
+            new snakeCell(
                 prev.cellPositionX - 1,
                 prev.cellPositionY));
     }
 
     _moveRight(prev){
         this.body.unshift(
-            new Cell(
-                cellColors.snake,
+            new snakeCell(
                 prev.cellPositionX + 1,
                 prev.cellPositionY));
 

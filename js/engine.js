@@ -21,7 +21,7 @@ class Engine {
     }
 
     drawApple(apple) {
-        this.ctx.fillStyle = apple.color;
+        this.ctx.fillStyle = apple.cell.color;
         this.ctx.fillRect(apple.cell.positionX,
             apple.cell.positionY,
             apple.cell.sizeX,
@@ -32,6 +32,7 @@ class Engine {
         for (let i = 0; i < snake.body.length; i++){
             let bodyPart = snake.body[i];
             this.ctx.fillStyle = bodyPart.color;
+            
             this.ctx.fillRect(
                 bodyPart.positionX, 
                 bodyPart.positionY,

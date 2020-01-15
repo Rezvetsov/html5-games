@@ -1,9 +1,3 @@
-const cellColors = {
-    cell: "#212121",
-    snake: "#0277BD",
-    apple: "tomato"
-};
-
 class Cell {
     color;
     
@@ -18,11 +12,25 @@ class Cell {
     indent = 1;
 
 
-    constructor(color, posX, posY) {
-        this.color = color;
+    constructor(posX, posY) {
+        this.color = "#212121";
         this.cellPositionX = posX;
         this.cellPositionY = posY;
         this.positionX = posX * (this.sizeX + this.indent);
         this.positionY = posY * (this.sizeY + this.indent);
+    }
+}
+
+class appleCell extends Cell {
+    constructor(posX, posY) {
+        super(posX, posY);
+        this.color = "tomato";
+    }
+}
+
+class snakeCell extends Cell {
+    constructor(posX, posY) {
+        super(posX, posY);
+        this.color = "#0277BD";
     }
 }
