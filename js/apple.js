@@ -1,7 +1,7 @@
 class Apple {
-    color = "tomato";
-    cell = {};
-    setCell(cell) {
-        this.cell = cell;
+    color = cellColors.apple;
+    cell;
+    constructor(pos){
+        this.cell = new Cell(cellColors.apple, pos.x, pos.y);
     }
 }
