@@ -1,3 +1,9 @@
+const cellColors = {
+    cell: "#212121",
+    snake: "#0277BD",
+    apple: "tomato"
+};
+
 class Cell {
     color;
     
