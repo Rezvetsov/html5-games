@@ -45,12 +45,12 @@ class Engine {
     }
 
     shade(){
-        this.ctx.fillStyle = 'rgba(0,0,0,0.5)';
+        this.ctx.fillStyle = 'rgba(0,0,0,0.7)';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
     printTextCenter(text){
-        this.ctx.font = "72px roboto";
+        this.ctx.font = "72px Verdana";
         this.ctx.textAlign = "center";
         this.ctx.fillStyle = "red";
         let x = this.canvas.width / 2;
@@ -59,7 +59,9 @@ class Engine {
     }
 
     printTextCenterSub(text){
-        this.ctx.font = "30px roboto";
+        this.ctx.font = "28px Verdana";
+        this.ctx.textAlign = "center";
+        this.ctx.fillStyle = "red";
         let x = this.canvas.width / 2;
         let y = this.canvas.height / 2 + 50;
         this._printText(text, x, y);
@@ -67,5 +69,32 @@ class Engine {
 
     _printText(text, x,y){
         this.ctx.fillText(text, x, y);
+    }
+
+    printCurrentScore(text){
+        this.ctx.font = "20px Verdana";
+        this.ctx.textAlign = "left";
+        this.ctx.fillStyle = "#000";
+        let x = 50;
+        let y = this.canvas.height - 30;
+        this._printText(text, x, y);
+    }
+
+    printBestScore(text){
+        this.ctx.font = "20px Verdana";
+        this.ctx.textAlign = "left";
+        this.ctx.fillStyle = "#000";
+        let x = 50;
+        let y = this.canvas.height - 10;
+        this._printText(text, x, y);
+    }
+
+    printDeaths(text) {
+        this.ctx.font = "20px Verdana";
+        this.ctx.textAlign = "right";
+        this.ctx.fillStyle = "#000";
+        let x = this.canvas.width - 50;
+        let y = this.canvas.height - 30;
+        this._printText(text, x, y);
     }
 }
