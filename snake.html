@@ -29,15 +29,8 @@
         let gm = new GameManager(canvas);
         
         gm.Start();
-        let body = document.getElementById('body');
-        body.addEventListener('keydown', function(e){
-            gm.GetInput(e);
-        });
-
-        function keydown(e){
-            if(e.key == ' ')
-                gm.Start();
-        }
+        
+        
     </script>
 </body>
 </html>
