@@ -40,7 +40,7 @@ class Snake {
             this.appleEaten++;
             obstacles.apple.eaten = true;
             this.stretch();
-        } 
+        }
         // Проверяем, врезалась ли змейка сама в себя
         // если где-то да, то змейка умирает ;(
         // Счетчик начинается с 4, 
@@ -51,6 +51,13 @@ class Snake {
                     this.dead = true;
                 }
             }
+        }
+        
+        if(head.cellPositionX >= obstacles.border.borderX
+            || head.cellPositionX < 0
+            || head.cellPositionY >= obstacles.border.borderY
+            || head.cellPositionY < 0){
+            this.dead = true;
         }
     }
     
