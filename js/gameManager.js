@@ -12,6 +12,10 @@ class GameManager {
     isPause = true;
     isGameOver = false;
     isDebug = false;
+
+    deaths = 0;
+    bestScore = 0;
+
     constructor(canvas) {
         this.grid = new Grid();
         this.engine = new Engine(canvas, this.grid);
@@ -55,6 +59,11 @@ class GameManager {
     gameOver(){
         this.isPause = true;
         this.isGameOver = true;
+        this.deaths++;
+
+        if (this.snake.appleEaten > this.bestScore){
+            this.bestScore = this.snake.appleEaten;
+        }
         this.ui.gameOver();
     }
 
@@ -74,7 +83,7 @@ class GameManager {
                 this.gameOver();
             }
 
-            this.ui.printStats(this.snake.appleEaten);
+            this.ui.printStats(this.snake.appleEaten, this.bestScore, this.deaths);
         }
     }
 
