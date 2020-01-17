@@ -12,4 +12,11 @@ class Grid {
             }
         }
     }
+
+    getRandomCell(){
+        let length = this.cells.length;
+        let x = Math.floor(Math.random() * length);
+        let y = Math.floor(Math.random() * length);
+        return { x, y };
+    }
 }

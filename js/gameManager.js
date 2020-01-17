@@ -11,7 +11,7 @@ class GameManager {
     
     isPause = true;
     isGameOver = false;
-    isDebug = false;
+    isDebug = true;
 
     deaths = 0;
     bestScore = 0;
@@ -88,10 +88,22 @@ class GameManager {
     }
 
     GetRandomCellPosition() {
-        let length = this.grid.cells.length;
-        let x = Math.floor(Math.random() * length);
-        let y = Math.floor(Math.random() * length);
-        return {x, y};
+        let pos = {};
+        let isMatch = false;
+        do{
+            isMatch = false;
+            
+            pos = this.grid.getRandomCell();
+            
+            for (let i = 0; i < this.snake.body.length; i++) {
+                if (this.snake.body[i].cellPositionX == pos.x
+                    && this.snake.body[i].cellPositionY == pos.y) {
+                    isMatch = true;
+                }
+            }
+        } while(isMatch == true);
+
+        return pos;
     }
 
     GetInput(e) {        
