@@ -2,6 +2,7 @@ class GameManager {
     interval = null;
 
     engine = {};
+    ui = {};
     grid = {};
     apple = {};
     snake = {};
@@ -14,6 +15,7 @@ class GameManager {
     constructor(canvas) {
         this.grid = new Grid();
         this.engine = new Engine(canvas, this.grid);
+        this.ui = new UI(this.engine);
 
         let body = document.getElementById('body');
         body.addEventListener('keydown', function (e) {
@@ -22,6 +24,7 @@ class GameManager {
     }
 
     Start() {
+        this.direction = directions.right;
         this.engine.clear();
         this.snake = new Snake();
         this.apple = new Apple(this.GetRandomCellPosition());
@@ -50,10 +53,10 @@ class GameManager {
     gameOver(){
         this.isPause = true;
         this.isGameOver = true;
+        this.ui.gameOver();
     }
 
     NextFrame(){
-        console.log('here');     
         if(this.isPause == false){
             this.snake.move(this.direction);
             this.engine.clear();
