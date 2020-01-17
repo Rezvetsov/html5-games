@@ -10,7 +10,7 @@
 
     <title>Snake</title>
 </head>
-<body id="body">
+<body id="body" onload="start()">
     <div class="d-flex justify-content-center align-items-center h-100">
         <canvas id="canvas" width="600px" height="650px">
 
@@ -25,11 +25,14 @@
     <script src="js/obstacles.js"></script>
     <script src="js/gameManager.js"></script>
     <script>
+        let gm = {};
+        function start() {
+            let canvas = document.getElementById("canvas");
+            gm = new GameManager(canvas);
+
+            gm.Start();
+        }
         // Переменные
-        let canvas = document.getElementById("canvas");
-        let gm = new GameManager(canvas);
-        
-        gm.Start();
         
         
     </script>
