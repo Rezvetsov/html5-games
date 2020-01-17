@@ -43,4 +43,29 @@ class Engine {
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
+
+    shade(){
+        this.ctx.fillStyle = 'rgba(0,0,0,0.5)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    printTextCenter(text){
+        this.ctx.font = "72px roboto";
+        this.ctx.textAlign = "center";
+        this.ctx.fillStyle = "red";
+        let x = this.canvas.width / 2;
+        let y = this.canvas.height / 2;
+        this._printText(text, x, y);
+    }
+
+    printTextCenterSub(text){
+        this.ctx.font = "30px roboto";
+        let x = this.canvas.width / 2;
+        let y = this.canvas.height / 2 + 50;
+        this._printText(text, x, y);
+    }
+
+    _printText(text, x,y){
+        this.ctx.fillText(text, x, y);
+    }
 }
