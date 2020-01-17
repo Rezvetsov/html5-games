@@ -11,7 +11,7 @@ class GameManager {
     
     isPause = true;
     isGameOver = false;
-    
+    isDebug = false;
     constructor(canvas) {
         this.grid = new Grid();
         this.engine = new Engine(canvas, this.grid);
@@ -34,20 +34,22 @@ class GameManager {
     }
 
     startGame(){
-        if(this.isPause == false){
+        if (this.isDebug == true && this.isPause == false){
             this.isPause = true;
-        } else{
-            // Если интервал == null, 
-            // то игра еще не начиналась
-            if (this.interval == null)
-                this.interval = setInterval("gm.NextFrame()", 100);
-
-            if(this.isGameOver == true){
-                this.Start();
-                this.isGameOver = false;
-            }
-            this.isPause = false;
+            return;
         }
+        
+        // Если интервал == null, 
+        // то игра еще не начиналась
+        if (this.interval == null)
+            this.interval = setInterval("gm.NextFrame()", 100);
+
+        if(this.isGameOver == true){
+            this.isGameOver = false;
+            this.Start();
+        }
+        this.isPause = false;
+
     }
 
     gameOver(){
@@ -71,6 +73,8 @@ class GameManager {
             if (this.snake.dead == true) {
                 this.gameOver();
             }
+
+            this.ui.printStats(this.snake.appleEaten);
         }
     }
 
