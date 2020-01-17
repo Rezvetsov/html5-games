@@ -11,7 +11,7 @@ class GameManager {
     
     isPause = true;
     isGameOver = false;
-    isDebug = true;
+    isDebug = false;
 
     deaths = 0;
     bestScore = 0;
