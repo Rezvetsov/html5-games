@@ -18,7 +18,7 @@ class GameManager {
 
     constructor(canvas) {
         this.grid = new Grid();
-        this.engine = new Engine(canvas, this.grid);
+        this.engine = new Engine(canvas);
         this.ui = new UI(this.engine);
 
         let body = document.getElementById('body');
